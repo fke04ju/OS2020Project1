@@ -21,7 +21,7 @@ int main(int argc, char* argv[]){
     scanf("%s%d",sched_name,&proc_num);
     proc = (struct process *)malloc(proc_num*sizeof(struct process));
     for(int i = 0;i<proc_num;i++){
-        scanf("%s%d%d",proc[i].name,&proc[i].t_ready,&proc[i].t_exec);
+        scanf("%s%d%d",proc[i].name,&proc[i].ready,&proc[i].exec);
     }
     if(!strcmp(sched_name,"FIFO")){
         name = FIFO;
