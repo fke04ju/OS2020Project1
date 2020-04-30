@@ -9,7 +9,7 @@
 #include <sys/syscall.h>
 
 #define get_time 334
-#define printk 315
+#define printk 335
 
 int process_assign_CPU(int pid, int core){
     if(core > sizeof(cpu_set_t)){
