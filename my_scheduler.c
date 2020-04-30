@@ -34,7 +34,6 @@ int next_proc_id(struct process *proc, int proc_num, int name){
             }
         }
     }else if(name == RR){
-        if()
     }
 }
 
@@ -65,7 +64,7 @@ int scheduling(struct process *proc, int proc_num, int name){
         }
         int next_process = next_proc_id(proc,proc_num,name);
         if(next_process != -1){
-            if(running != next_process){
+            if(running_process != next_process){
                 process_wakeup(proc[next_process].pid);
                 process_block(proc[running_process].pid);
                 running_process = next_process;

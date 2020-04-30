@@ -7,8 +7,6 @@
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/syscall.h>
-#include <linux/ktime.h>
-#include <timekeeping.h>
 
 #define get_time 334
 #define printk 335
@@ -16,7 +14,7 @@
 int process_assign_CPU(int pid, int core){
     if(core > sizeof(cpu_set_t)){
         fprintf(stderr,"core index err\n");
-        return -1
+        return -1;
     }
     cpu_set_t m;
     CPU_ZERO(&m);
@@ -38,8 +36,8 @@ int process_execute(struct process proc){
         struct timespec start_t,end_t;
         char dmsg[256];
         syscall(get_time,&start_t);
-        for(int i = 0;i<proc.t_exec;i++){
-            UNIT_T();
+        for(int i = 0;i<proc.exec;i++){
+            _unit_();
         }
         syscall(get_time,&end_t);
         sprintf(dmsg,"[Project1] %d %lu,%09lu %lu.%09lu\n",getpid(),start,start_t.tv_sec,start_t.tv_nsec,end_t.tv_sec,end_t.tv_nsec);
