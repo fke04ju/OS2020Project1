@@ -1,5 +1,5 @@
 #ifndef _SCHEDULING_H_
-#define _SCHEDULING_H)
+#define _SCHEDULING_H_
 #include "my_process.h"
 
 #define FIFO 1
