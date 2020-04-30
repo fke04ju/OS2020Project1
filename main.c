@@ -10,12 +10,8 @@
 #include "my_process.h"
 #include "my_scheduler.h"
 
-#define FIFO 1
-#define RR 2
-#define SJF 3
-#define PSJF 4
-#define GET_TIME 314
-#define PRINTK 315
+#define GET_TIME 334
+#define PRINTK 335
 
 int cmp(const void *a, const void *b){
     return ((struct process *)a)->ready - ((struct process *)b)->ready;
