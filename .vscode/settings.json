@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "my_process.h": "c",
+        "my_scheduler.h": "c",
+        "unistd.h": "c"
+    }
+}

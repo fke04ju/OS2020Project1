@@ -1,5 +1,5 @@
 #define _GNU_SOURCE
-#include "process.h"
+#include "my_process.h"
 #include "my_scheduler.h"
 #include <stdio.h>
 #include <stdlib.h>
