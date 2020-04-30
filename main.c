@@ -7,6 +7,9 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/syscall.h>
+#include "my_process.h"
+#include "my_scheduler.h"
+
 #define FIFO 1
 #define RR 2
 #define SJF 3
