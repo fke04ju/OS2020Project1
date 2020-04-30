@@ -16,7 +16,7 @@ int next_proc_id(struct process *proc, int proc_num, int name){
     }
     int ret = -1;
     if(name == SJF || name == PSJF){
-        for(int i = 0i<proc_num;i++){
+        for(int i = 0;i<proc_num;i++){
             if(proc[i].pid == -1 || proc[i].exec == 0){
                 continue;
             }
