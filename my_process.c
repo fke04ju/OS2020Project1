@@ -40,7 +40,7 @@ int process_execute(struct process proc){
             _unit_();
         }
         syscall(get_time,&end_t);
-        sprintf(dmsg,"[Project1] %d %lu,%09lu %lu.%09lu\n",getpid(),start,start_t.tv_sec,start_t.tv_nsec,end_t.tv_sec,end_t.tv_nsec);
+        sprintf(dmsg,"[Project1] %d %lu,%09lu %lu.%09lu\n",getpid(),start_t.tv_sec,start_t.tv_nsec,end_t.tv_sec,end_t.tv_nsec);
         syscall(printk,dmsg);
         exit(0);
     }
