@@ -31,10 +31,27 @@ int next_proc_id(struct process *proc, int proc_num, int name){
             }
             if(ret == -1 || proc[i].ready < proc[ret].ready){
                 ret = i;
+                break;
             }
         }
     }else if(name == RR){
+        if(running_process == -1){
+            for(int i = 0;i<proc_num;i++){
+                if(proc[i].pid != -1 && proc[i].exec > 0){
+                    ret = i;
+                    break;
+                }
+            }
+        }else if((unit_time-context_switch_time)%500 == 0){
+            ret = (running_process+1)%proc_num;
+            while(proc[i].pid == -1 || proc[ret].exec == 0){
+                ret = (ret+1)%proc_num;
+            }
+        }else{
+            ret = running_process;
+        }
     }
+    return ret;
 }
 
 int scheduling(struct process *proc, int proc_num, int name){
@@ -48,7 +65,7 @@ int scheduling(struct process *proc, int proc_num, int name){
     end_proc_num = 0;
     while(1){
         if(running_process != -1 && proc[running_process].exec == 0){
-            waitpid(proc[running_process].pid, NULL, 0);
+            waitpid(proc[running_process].pid, NULL, WUNTRACED);
             printf("%s %d\n", proc[running_process].name, proc[running_process].pid);
             running_process = -1;
             end_proc_num ++;
@@ -76,6 +93,7 @@ int scheduling(struct process *proc, int proc_num, int name){
             proc[running_process].exec--;
         }
         unit_time++;
+        //printf("time : %d , running : %d\n",unit_time,proc[running_process].pid);
     }
     return 0;
 }

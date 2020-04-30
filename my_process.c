@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <sched.h>
 #include <errno.h>
+#include <signal.h>
 #include <sys/types.h>
 #include <sys/syscall.h>
 
@@ -28,11 +29,15 @@ int process_assign_CPU(int pid, int core){
 
 int process_execute(struct process proc){
     int pid = fork();
+    if(pid > 0){
+        process_assign_CPU(pid,child_CPU);
+    }
     if(pid < 0){
         perror("fork\n");
         return -1;
     }
     if(pid == 0){
+        usleep(1000);
         struct timespec start_t,end_t;
         char dmsg[256];
         syscall(get_time,&start_t);
@@ -56,6 +61,7 @@ int process_block(int pid){
         perror("sched_setscheduler\n");
         return -1;
     }
+    kill(pid,SIGTSTP);
     return ret;
 }
 
@@ -67,5 +73,6 @@ int process_wakeup(int pid){
         perror("sched_setscheduler\n");
         return -1;
     }
+    kill(pid,SIGCONT);
     return ret;
 }
