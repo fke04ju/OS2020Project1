@@ -35,7 +35,7 @@ int process_execute(struct process proc){
     }
     if(pid == 0){
         usleep(1000);
-        struct timespec start_t,end_t;
+        long start_t,end_t;
         char dmsg[256];
         start_t = syscall(get_time);
         for(int i = 0;i<proc.exec;i++){
