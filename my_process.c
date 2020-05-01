@@ -29,9 +29,6 @@ int process_assign_CPU(int pid, int core){
 
 int process_execute(struct process proc){
     int pid = fork();
-    if(pid > 0){
-        process_assign_CPU(pid,child_CPU);
-    }
     if(pid < 0){
         perror("fork\n");
         return -1;
@@ -40,13 +37,12 @@ int process_execute(struct process proc){
         usleep(1000);
         struct timespec start_t,end_t;
         char dmsg[256];
-        syscall(get_time,&start_t);
+        start_t = syscall(get_time);
         for(int i = 0;i<proc.exec;i++){
             _unit_();
         }
-        syscall(get_time,&end_t);
-        sprintf(dmsg,"[Project1] %d %lu,%09lu %lu.%09lu\n",getpid(),start_t.tv_sec,start_t.tv_nsec,end_t.tv_sec,end_t.tv_nsec);
-        syscall(printk,dmsg);
+        end_t = syscall(get_time);
+        syscall(printk,getpid(),start_t,end_t);
         exit(0);
     }
     process_assign_CPU(pid,child_CPU);
