@@ -83,7 +83,9 @@ int scheduling(struct process *proc, int proc_num, int name){
         if(next_process != -1){
             if(running_process != next_process){
                 process_wakeup(proc[next_process].pid);
-                process_block(proc[running_process].pid);
+                if(running_process != -1){
+                    process_block(proc[running_process].pid);
+                }
                 running_process = next_process;
                 context_switch_time = unit_time;
             }
