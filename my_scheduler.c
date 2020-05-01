@@ -44,7 +44,7 @@ int next_proc_id(struct process *proc, int proc_num, int name){
             }
         }else if((unit_time-context_switch_time)%500 == 0){
             ret = (running_process+1)%proc_num;
-            while(proc[i].pid == -1 || proc[ret].exec == 0){
+            while(proc[ret].pid == -1 || proc[ret].exec == 0){
                 ret = (ret+1)%proc_num;
             }
         }else{

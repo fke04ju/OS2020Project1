@@ -1,13 +1,13 @@
 CFLAG = -DDEBUG -Wall -std=c99
 
-main: main.o scheduler.o process.o
-	gcc $(CFLAG) main.o scheduler.o process.o -o main
+main: main.o my_scheduler.o my_process.o
+	gcc $(CFLAG) main.o my_scheduler.o my_process.o -o main
 main.o: main.c Makefile
 	gcc $(CFLAG) main.c -c
-scheduler.o: scheduler.c scheduler.h Makefile
-	gcc $(CFLAG) scheduler.c -c
-process.o: process.c process.h Makefile
-	gcc $(CFLAG) process.c -c
+my_scheduler.o: my_scheduler.c my_scheduler.h Makefile
+	gcc $(CFLAG) my_scheduler.c -c
+my_process.o: my_process.c my_process.h Makefile
+	gcc $(CFLAG) my_process.c -c
 clean:
 	rm -rf *o
 run:
