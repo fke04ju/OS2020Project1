@@ -42,7 +42,7 @@ int process_execute(struct process proc){
             _unit_();
         }
         end_t = syscall(get_time);
-        syscall(printk,getpid(),start_t,end_t);
+        //syscall(printk,getpid(),start_t,end_t);
         exit(0);
     }
     process_assign_CPU(pid,child_CPU);
