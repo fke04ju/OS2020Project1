@@ -93,7 +93,7 @@ int scheduling(struct process *proc, int proc_num, int name){
             proc[running_process].exec--;
         }
         unit_time++;
-        //printf("time : %d , running : %d\n",unit_time,proc[running_process].pid);
+        printf("time : %d , running : %d\n",unit_time,proc[running_process].pid);
     }
     return 0;
 }
