@@ -34,6 +34,7 @@ int process_execute(struct process proc){
         return -1;
     }
     if(pid == 0){
+        printf("fork\n");
         usleep(1000);
         long start_t,end_t;
         start_t = syscall(get_time);
